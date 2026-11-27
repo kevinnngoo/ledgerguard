@@ -1,0 +1,6 @@
+# Profile used by docker-compose: structured JSON logs (ECS). The correlationId MDC value is
+# included in every log line, so a request can be traced through posting and event publication.
+logging:
+  structured:
+    format:
+      console: ecs

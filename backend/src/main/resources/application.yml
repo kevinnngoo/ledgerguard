@@ -1,0 +1,70 @@
+spring:
+  application:
+    name: ledgerguard
+  datasource:
+    url: ${LEDGERGUARD_DB_URL:jdbc:postgresql://localhost:5432/ledgerguard}
+    username: ${LEDGERGUARD_DB_USER:ledgerguard}
+    password: ${LEDGERGUARD_DB_PASSWORD:}
+    hikari:
+      maximum-pool-size: ${LEDGERGUARD_DB_POOL_SIZE:20}
+      connection-timeout: 10000
+  flyway:
+    enabled: true
+  mvc:
+    problemdetails:
+      enabled: true
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    deserialization:
+      fail-on-unknown-properties: true
+
+server:
+  port: 8080
+  error:
+    include-stacktrace: never
+    include-message: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  metrics:
+    tags:
+      application: ledgerguard
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+logging:
+  level:
+    com.ledgerguard: INFO
+
+ledgerguard:
+  currency: USD
+  risk:
+    # Per-transaction ceiling. Larger amounts are rejected (business rejection, recorded).
+    max-transaction-amount: 1000000.00
+    # Rolling 24h outgoing ceiling per account (withdrawals + outgoing transfers).
+    max-daily-outgoing: 2500000.00
+  security:
+    # Shared password for the five demo users. Required: no default is committed.
+    demo-password: ${LEDGERGUARD_DEMO_PASSWORD}
+    cors-allowed-origins: ${LEDGERGUARD_CORS_ORIGINS:}
+  simulation:
+    # Enables the Simulation Lab endpoints and failure injection. Off unless explicitly enabled.
+    enabled: ${LEDGERGUARD_SIMULATION_ENABLED:false}
+    max-concurrent-requests: 200
+  outbox:
+    enabled: true
+    poll-interval-ms: 1000
+    batch-size: 50
+    max-backoff-seconds: 60

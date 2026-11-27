@@ -1,0 +1,16 @@
+.env
+*.log
+.DS_Store
+.idea/
+.vscode/
+*.iml
+
+# backend
+backend/target/
+
+# frontend
+frontend/node_modules/
+frontend/dist/
+
+# load test output
+load-tests/results/
