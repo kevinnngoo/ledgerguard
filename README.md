@@ -4,7 +4,7 @@
 
 > LedgerGuard is an educational, portfolio project. It uses **synthetic data only**. It does not process real money, does not connect to any bank or payment network, and is not a regulated financial service.
 
-![CI](https://github.com/OWNER/ledgerguard/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/kevinnngoo/ledgerguard/actions/workflows/ci.yml/badge.svg)
 
 ## Why it exists
 
@@ -116,12 +116,11 @@ PGHOST=localhost PGUSER=postgres PGPASSWORD=... ./scripts/verify-db-concurrency.
 
 | Check | Where | Status |
 | --- | --- | --- |
-| SQL-level locking and idempotency proof | local PostgreSQL 16, CI `database` job | Passed locally (results in [docs/case-studies.md](docs/case-studies.md)) |
-| Frontend lint, typecheck, unit tests, build | local + CI `frontend` job | Passed locally |
-| Java compile + unit + Testcontainers integration tests | CI `backend` job | **Pending first CI run** |
-| Docker images build | CI `docker` job | **Pending first CI run** |
-
-The backend was written in an environment without Maven Central access, so its first compile and test run happens in GitHub Actions. This table is updated with the real result.
+| Java compile, 31 unit tests, 61 Testcontainers integration tests (92 total) | CI `backend` job | **Passed**: 0 failures, 0 skipped ([run 45954950981](https://github.com/kevinnngoo/ledgerguard/actions/runs/45954950981)) |
+| SQL-level locking and idempotency proof | CI `database` job + local PostgreSQL 16 | **Passed** (results in [docs/case-studies.md](docs/case-studies.md)) |
+| Frontend lint, typecheck, unit tests, build | CI `frontend` job | **Passed** |
+| Docker images build | CI `docker` job | **Passed** |
+| Full stack via `docker compose up` (manual smoke test) | your machine | Not yet run |
 
 ## Measured results
 

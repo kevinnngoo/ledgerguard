@@ -2,7 +2,7 @@
 
 | Phase | Scope | Status |
 | --- | --- | --- |
-| 1. Foundation | Repo structure, Spring Boot, React, PostgreSQL, Flyway, Docker Compose, CI, docs | Done (backend CI verification pending first run) |
+| 1. Foundation | Repo structure, Spring Boot, React, PostgreSQL, Flyway, Docker Compose, CI, docs | Done (all CI jobs passing) |
 | 2. Core ledger | Accounts, BigDecimal rules, double-entry journal, projections, deposits/withdrawals/transfers, validation | Done |
 | 3. Transaction integrity | Row locking, retries, idempotency, reversals, concurrency tests, failure injection, integrity checks | Done |
 | 4. Operational dashboard | Overview, accounts, transactions, ledger explorer, Simulation Lab | Done |
